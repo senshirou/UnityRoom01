@@ -23,7 +23,6 @@ public class InstantiateCube : MonoBehaviour
     {
 
         transform.position += transform.forward * EnemySpeedRate;
-        Debug.Log(EnemyLife);
     }
 
     void OnDestroy()
