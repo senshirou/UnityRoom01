@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         //ƒvƒŒƒCƒ„[‚ğ“®‚©‚·
         transform.position += new Vector3(Movex, 0, Movez);
 
-        Debug.Log(speed);
+        
     }
 
     private void OnTriggerEnter(Collider other)

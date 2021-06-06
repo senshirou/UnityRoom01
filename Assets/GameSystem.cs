@@ -19,7 +19,7 @@ public class GameSystem : MonoBehaviour
 
     float NowScore = 0;
     float PointRate = 1.0f;
-    float PointRateUp = 0.01f;
+    float AddPointRate = 0.01f;
 
 
     
@@ -27,6 +27,8 @@ public class GameSystem : MonoBehaviour
     
 
     // Start is called before the first frame update
+
+    //プレイヤーライフの初期設定
     void Start()
     {
         PlayerLife.value = 100;
@@ -35,14 +37,14 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerLife.value);
+        Debug.Log(PointRate);
     }
 
 
     public void AddPoint(float Point)
     {
         
-        PointRate += PointRateUp;
+        PointRate += AddPointRate;
         NowScore += (Point * PointRate * (_Player.speed * 10));
        
         ScoreText.text = NowScore.ToString("F0");
@@ -56,6 +58,11 @@ public class GameSystem : MonoBehaviour
         {
             Destroy(PlayerObject);
         }
+    }
+
+    public void PointRateDown()
+    {
+        PointRate = PointRate <= 1.00f ? PointRate -= AddPointRate : PointRate;
     }
 
 

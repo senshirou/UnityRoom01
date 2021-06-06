@@ -50,8 +50,6 @@ public class InstantiateArea : MonoBehaviour
         AreaNumber = Random.Range(-10, 10);
 
 
-        Debug.Log(times01);
-
         if(times01 >= 1f)
         {
             Instantiate(InstantiateObject, new Vector3(AreaNumber,InstantiateVector3.y,InstantiateVector3.z),transform.rotation);
