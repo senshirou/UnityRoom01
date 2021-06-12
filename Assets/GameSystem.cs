@@ -14,12 +14,17 @@ public class GameSystem : MonoBehaviour
 
     [SerializeField] GameObject PlayerObject;
 
+    [SerializeField] TextMeshProUGUI PointRateText;
+
     
 
 
     float NowScore = 0;
     float PointRate = 1.0f;
-    float AddPointRate = 0.01f;
+    float PointRateMoves = 0.01f;
+
+    float PlayerLifeMove = 20;
+
 
 
     
@@ -28,9 +33,12 @@ public class GameSystem : MonoBehaviour
 
     // Start is called before the first frame update
 
-    //�v���C���[���C�t�̏����ݒ�
     void Start()
     {
+        PointRateText.text = PointRate.ToString("F2");
+        ScoreText.text = NowScore.ToString("F0");
+
+        //プレイヤーのライフ設定
         PlayerLife.value = 100;
     }
 
@@ -40,17 +48,24 @@ public class GameSystem : MonoBehaviour
         Debug.Log(PointRate);
     }
 
-
+    //敵を倒してポイントが上がった時の挙動
+    //1.ポイントのレートが0.01あがる
+    //2.スコアに加算されるポイントは敵キャラのポイント*ポイントレート*(プレイヤーのスピード*10)
     public void AddPoint(float Point)
     {
         
-        PointRate += AddPointRate;
+
+        PointRate += PointRateMoves;
+
         NowScore += (Point * PointRate * (_Player.speed * 10));
        
         ScoreText.text = NowScore.ToString("F0");
+        PointRateText.text = PointRate.ToString("F2");
 
     }
 
+
+    //プレイヤーのライフがゼロになるとプレイヤーが破壊される
     public void PlayerLifeLost(float LifeLostPoint)
     {
         PlayerLife.value -= LifeLostPoint;
@@ -62,7 +77,14 @@ public class GameSystem : MonoBehaviour
 
     public void PointRateDown()
     {
-        PointRate = PointRate <= 1.00f ? PointRate -= AddPointRate : PointRate;
+
+        PointRate = PointRate >= 1.01f ? PointRate -= PointRateMoves : 1.0f;
+        PointRateText.text = PointRate.ToString("F2");
+    }
+
+    public void RecoveryLife()
+    {
+        PlayerLife.value += PlayerLifeMove;
     }
 
 

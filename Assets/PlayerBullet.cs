@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    GameSystem _GameSystem;
-
     float BulletSpeed = 0.1f;
-
-    float BulletDestroyTimeLimit = 4f;
-
-    float BulletDestroyTime = 0f;
-
-    
+    GameSystem _GameSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -23,13 +16,8 @@ public class PlayerBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BulletDestroyTime += Time.deltaTime;
         transform.position += transform.forward * BulletSpeed;
-        if(BulletDestroyTime >= BulletDestroyTimeLimit)
-        {
-            _GameSystem.PointRateDown();
-            Destroy(gameObject);
-        }
+        Invoke(nameof(DestroyPenalty), 4f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,5 +26,12 @@ public class PlayerBullet : MonoBehaviour
        {
             Destroy(gameObject);
        }
+    }
+
+    //4�b��ɃI�u�W�F�N�g��j�󂵂ēG�ɓ�����Ȃ��y�i���e�B�[���s
+    void DestroyPenalty()
+    {
+        _GameSystem.PointRateDown();
+        Destroy(gameObject);
     }
 }

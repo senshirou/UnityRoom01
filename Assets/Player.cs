@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
     float Limitz2 = -14.5f;
     Vector3 PlayerMove;
 
+    GameSystem _GameSystem;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerMove = new Vector3(Movex, 0, Movez);
+        _GameSystem = GameObject.Find("----ScriptSystemSpace----").GetComponent<GameSystem>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,12 @@ public class Player : MonoBehaviour
         {
             speed -= 0.1f;
             speed = speed <= 0.1f ? 0.1f : speed;
+            Destroy(other.gameObject);
+        }
+
+        else if(other.gameObject.tag == "Heart")
+        {
+            _GameSystem.RecoveryLife();
             Destroy(other.gameObject);
         }
     }

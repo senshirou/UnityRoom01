@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - SpeedUp
   - SpeedDown
+  - Heart
   layers:
   - Default
   - TransparentFX
