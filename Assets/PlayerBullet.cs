@@ -28,7 +28,7 @@ public class PlayerBullet : MonoBehaviour
        }
     }
 
-    //4•bŒã‚ÉƒIƒuƒWƒFƒNƒg‚ğ”j‰ó‚µ‚Ä“G‚É“–‚½‚ç‚È‚¢ƒyƒiƒ‹ƒeƒB[‚ğÀs
+    //4ï¿½bï¿½ï¿½ÉƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½jï¿½ó‚µ‚Ä“Gï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½yï¿½iï¿½ï¿½ï¿½eï¿½Bï¿½[ï¿½ï¿½ï¿½s
     void DestroyPenalty()
     {
         _GameSystem.PointRateDown();

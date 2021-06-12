@@ -8,7 +8,7 @@ public class Enemy03 : EnemyBaseScript
     void Start()
     {
         EnemyLife = 999;
-        Debug.Log(EnemyLife);
+        //Debug.Log(EnemyLife);
     }
 
     // Update is called once per frame
