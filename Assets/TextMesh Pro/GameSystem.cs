@@ -26,35 +26,37 @@ public class GameSystem : MonoBehaviour
     float PlayerLifeMove = 20;
 
 
+
     
 
     
 
     // Start is called before the first frame update
 
-    
     void Start()
     {
         PointRateText.text = PointRate.ToString("F2");
         ScoreText.text = NowScore.ToString("F0");
 
-        //ƒvƒŒƒCƒ„[‚Ìƒ‰ƒCƒtÝ’è
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ©ã‚¤ãƒ•è¨­å®š
         PlayerLife.value = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerLife.value);
+        Debug.Log(PointRate);
     }
 
-    //“G‚ð“|‚µ‚Äƒ|ƒCƒ“ƒg‚ªã‚ª‚Á‚½Žž‚Ì‹““®
-    //1.ƒ|ƒCƒ“ƒg‚ÌƒŒ[ƒg‚ª0.01‚ ‚ª‚é
-    //2.ƒXƒRƒA‚É‰ÁŽZ‚³‚ê‚éƒ|ƒCƒ“ƒg‚Í“GƒLƒƒƒ‰‚Ìƒ|ƒCƒ“ƒg*ƒ|ƒCƒ“ƒgƒŒ[ƒg*(ƒvƒŒƒCƒ„[‚ÌƒXƒs[ƒh*10)
+    //æ•µã‚’å€’ã—ã¦ãƒã‚¤ãƒ³ãƒˆãŒä¸ŠãŒã£ãŸæ™‚ã®æŒ™å‹•
+    //1.ãƒã‚¤ãƒ³ãƒˆã®ãƒ¬ãƒ¼ãƒˆãŒ0.01ã‚ãŒã‚‹
+    //2.ã‚¹ã‚³ã‚¢ã«åŠ ç®—ã•ã‚Œã‚‹ãƒã‚¤ãƒ³ãƒˆã¯æ•µã‚­ãƒ£ãƒ©ã®ãƒã‚¤ãƒ³ãƒˆ*ãƒã‚¤ãƒ³ãƒˆãƒ¬ãƒ¼ãƒˆ*(ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ”ãƒ¼ãƒ‰*10)
     public void AddPoint(float Point)
     {
         
+
         PointRate += PointRateMoves;
+
         NowScore += (Point * PointRate * (_Player.speed * 10));
        
         ScoreText.text = NowScore.ToString("F0");
@@ -63,7 +65,7 @@ public class GameSystem : MonoBehaviour
     }
 
 
-    //ƒvƒŒƒCƒ„[‚Ìƒ‰ƒCƒt‚ªƒ[ƒ‚É‚È‚é‚ÆƒvƒŒƒCƒ„[‚ª”j‰ó‚³‚ê‚é
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ©ã‚¤ãƒ•ãŒã‚¼ãƒ­ã«ãªã‚‹ã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒç ´å£Šã•ã‚Œã‚‹
     public void PlayerLifeLost(float LifeLostPoint)
     {
         PlayerLife.value -= LifeLostPoint;
@@ -76,6 +78,7 @@ public class GameSystem : MonoBehaviour
 
     public void PointRateDown()
     {
+
         PointRate = PointRate >= 1.01f ? PointRate -= PointRateMoves : 1.0f;
         PointRateText.text = PointRate.ToString("F2");
     }
@@ -89,6 +92,7 @@ public class GameSystem : MonoBehaviour
     {
         naichilab.RankingLoader.Instance.SendScoreAndShowRanking(NowScore);
     }
+
 
 
 }
