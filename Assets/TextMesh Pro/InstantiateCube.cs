@@ -6,16 +6,23 @@ public class InstantiateCube : MonoBehaviour
 {
     GameSystem _GameSystem;
 
-    float EnemySpeedRate = -0.01f;
+    float EnemySpeedRate = -0.04f;
 
     float EnemyLife = 3;
 
     float EnemyLifeLost = 1;
 
+    int EnemyPoint = 100;
+
+    delegate void Dead();
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
         _GameSystem = GameObject.Find("----ScriptSystemSpace----").GetComponent<GameSystem>();
+        
     }
 
     // Update is called once per frame
@@ -25,19 +32,36 @@ public class InstantiateCube : MonoBehaviour
         transform.position += transform.forward * EnemySpeedRate;
     }
 
-    void OnDestroy()
-    {
-        _GameSystem.AddPoint(100);
-        
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
         EnemyLife = other.gameObject.tag == ("Bullet") ? EnemyLife -= EnemyLifeLost : EnemyLife;
         
-        if(EnemyLife <= 0)
+        if(other.gameObject.tag == "EnemyDeadPoint")
         {
             Destroy(gameObject);
         }
+
+        else if (EnemyLife <= 0)
+        {
+            DestroyEnemy();
+        }
+
+        else
+        {
+            //‰½‚à‚µ‚È‚¢
+        }
+    }
+
+    void DestroyEnemy()
+    {
+        _GameSystem.AddPoint(EnemyPoint);
+        Destroy(gameObject);
+    }
+
+    void Des2()
+    {
+
     }
 }

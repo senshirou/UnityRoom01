@@ -9,6 +9,7 @@ TagManager:
   - SpeedUp
   - SpeedDown
   - Heart
+  - EnemyDeadPoint
   layers:
   - Default
   - TransparentFX
