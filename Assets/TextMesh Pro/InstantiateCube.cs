@@ -16,12 +16,13 @@ public class InstantiateCube : MonoBehaviour
 
     delegate void Dead();
 
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
         _GameSystem = GameObject.Find("----ScriptSystemSpace----").GetComponent<GameSystem>();
+        
         
     }
 
