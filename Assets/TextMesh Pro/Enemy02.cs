@@ -38,14 +38,16 @@ public class Enemy02 : EnemyBaseScript
 
         rb.MovePosition(new Vector3(CirclePoint.transform.position.x + movex, transform.position.y, CirclePoint.transform.position.z + movez));
 
+        Debug.Log(EnemyLife);
+
 
     }
 
-    void OnDestroy()
-    {
-        _GameSystem.AddPoint(300);
+    //void OnDestroy()
+    //{
+    //    _GameSystem.AddPoint(300);
 
-    }
+    //}
 
 
     private void OnTriggerEnter(Collider other)
@@ -54,7 +56,19 @@ public class Enemy02 : EnemyBaseScript
 
         if (EnemyLife <= 0)
         {
+            DestroyEnemy();
+        }
+
+        else if (other.gameObject.tag == "EnemyDeadPoint")
+        {
             Destroy(gameObject);
         }
+    }
+
+    void DestroyEnemy()
+    {
+        _GameSystem.AddPoint(300);
+        Destroy(gameObject);
+
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    internal float speed = 0.1f;
+    internal float speed = 0.07f;
 
     float Movex;
     float Movez;

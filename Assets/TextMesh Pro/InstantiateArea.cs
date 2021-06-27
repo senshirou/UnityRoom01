@@ -15,11 +15,16 @@ public class InstantiateArea : MonoBehaviour
 
     [SerializeField] GameObject SpeedDown;
 
+    [SerializeField] GameObject LazerEnemy;
+
 
     float times01;
     float times02;
+    float LazerEnemyTime;
 
     float SpeedTime;
+
+    
     
 
     int AreaNumber;
@@ -45,7 +50,11 @@ public class InstantiateArea : MonoBehaviour
 
         SpeedTime += Time.deltaTime;
 
-        
+        LazerEnemyTime += Time.deltaTime;
+
+        //Debug.Log(LazerEnemyTime);
+
+
 
         AreaNumber = Random.Range(-10, 10);
 
@@ -68,6 +77,13 @@ public class InstantiateArea : MonoBehaviour
             Instantiate(SpeedUp, new Vector3(SpeedUpX, InstantiateVector3.y, InstantiateVector3.z), transform.rotation);
             Instantiate(SpeedDown, new Vector3(SpeedDownX, InstantiateVector3.y, InstantiateVector3.z), transform.rotation);
             SpeedTime = 6f;
+        }
+
+        else if(LazerEnemyTime >= 50)
+        {
+            Instantiate(LazerEnemy, new Vector3(AreaNumber, InstantiateVector3.y, InstantiateVector3.z), transform.rotation);
+            LazerEnemyTime = 40f;
+
         }
 
         

@@ -9,6 +9,8 @@ public class PlayerShotandLife : MonoBehaviour
 
     [SerializeField] GameSystem _GameSystem;
 
+    bool BulletControl = true;
+
 
     //プレイヤーのダメージ調整
     //プレイヤーに弾が接触し続けている時間
@@ -26,9 +28,14 @@ public class PlayerShotandLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))&& BulletControl == true)
         {
+            BulletControl = false;
             Instantiate(PlayerBullet, transform.position, transform.rotation);
+            StartCoroutine(nameof(WaitTime));
+            
+            
+            
         }
     }
 
@@ -43,6 +50,15 @@ public class PlayerShotandLife : MonoBehaviour
 
         PlayerTriggerTime = PlayerTriggerTime >= PlayerTriggerTimeLimit ? 0f : PlayerTriggerTime;
     }
+
+    IEnumerator WaitTime()
+    {
+        
+        yield return new WaitForSeconds(0.1f);
+        BulletControl = true;
+    }
+
+    
 
     
 

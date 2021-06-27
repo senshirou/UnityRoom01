@@ -39,13 +39,13 @@ public class GameSystem : MonoBehaviour
         ScoreText.text = NowScore.ToString("F0");
 
         //プレイヤーのライフ設定
-        PlayerLife.value = 100;
+        PlayerLife.value = 1000;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PointRate);
+        
     }
 
     //敵を倒してポイントが上がった時の挙動
@@ -90,7 +90,8 @@ public class GameSystem : MonoBehaviour
 
     public void RankingLoaderCall()
     {
-        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(NowScore);
+        int NowScoreInt = (int)NowScore;
+        naichilab.RankingLoader.Instance.SendScoreAndShowRanking(NowScoreInt);
     }
 
 
